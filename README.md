@@ -41,12 +41,19 @@ Typical layout:
 
 Univent-Tracker/
 ├─ main.cpp # Main control flow & menu
+
 ├─ Event.h # Event class declaration
+
 ├─ Event.cpp # Event class definitions (setters/getters/display)
+
 ├─ Functions.h # Declarations for insert/delete/search/sort/display
+
 ├─ Functions.cpp # Implementations (includes file handling)
+
 ├─ main.h # extern declarations for shared globals (if used)
+
 ├─ events.txt # Persistent storage (created at runtime)
+
 └─ README.md
 
 ---
@@ -86,8 +93,11 @@ We use | as a delimiter: ID|Name|Date|Venue.
 ## 🛠️ Where to Modify / Extend
 
 Event.h / Event.cpp —> modify event attributes and their getters/setters.
+
 Functions.cpp —> implement or update logic for insertion, deletion, searching, sorting, and file I/O.
+
 main.cpp —> change UI/menu flow or add program-level orchestration (load/save count on startup/exit).
+
 events.txt —> data file (created/updated by the program).
 
 ---
