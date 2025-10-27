@@ -64,7 +64,7 @@ Univent-Tracker/
 | Role | Name |
 |------|------|
 | **Team Lead** | Parul Prashar |
-| **Team Members** | Amneet Kaur • Khushpreet Kaur • Manroop Kaur (6) • Manroop Kaur (60) |
+| **Team Members** | • Amneet Kaur • Khushpreet Kaur • Manroop Kaur (6) • Manroop Kaur (60) |
 
 ---
 
