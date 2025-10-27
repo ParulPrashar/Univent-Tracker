@@ -40,6 +40,7 @@ In large universities, multiple departments often conduct events simultaneously 
 Typical layout:
 
 Univent-Tracker/
+
 ├─ main.cpp # Main control flow & menu
 
 ├─ Event.h # Event class declaration
@@ -105,8 +106,11 @@ events.txt —> data file (created/updated by the program).
 ## 📚 Learning Outcomes
 
 Practical experience with file handling in C++.
+
 Applying OOP principles in a real project.
+
 Team collaboration, modular design, and version control use (git).
+
 Handling persistence and simple data validation (dates, IDs).
 
 ---
