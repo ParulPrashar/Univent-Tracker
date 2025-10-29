@@ -3,7 +3,7 @@
 
 ![C++](https://img.shields.io/badge/language-C++-blue.svg)  
 ![Status](https://img.shields.io/badge/status-Active-success.svg)  
-![Contributors](https://img.shields.io/badge/contributors-4-brightgreen.svg)  
+![Contributors](https://img.shields.io/badge/contributors-5-brightgreen.svg)  
 ![Platform](https://img.shields.io/badge/platform-Desktop-lightgrey.svg)  
 
 ---
