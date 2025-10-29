@@ -1,124 +1,82 @@
 #include <iostream>
+#include<sstream>
+#include "main.h"
 #include <fstream>
-#include <string>
-#include <sstream> 
-
+#include "Event.h"
+#include "Functions.h"
 using namespace std;
 
-void search_name() {
-    string id, name, date, venue;
-    string searchname;
-    string line; 
-    bool found = false;
-
-    cout << "Enter event name to search: ";
-    getline(cin, searchname);
-
-    ifstream file;
-    file.open("events.txt");
-
-    if (file.is_open()) {
-        
-       
-        while (getline(file, line)) {
-            
-            stringstream ss(line);
-
-         
-            getline(ss, id, '|');
-            getline(ss, name, '|');
-            getline(ss, date, '|');
-            getline(ss, venue, '|'); 
-
-            
-            if (name == searchname) {
-                cout << "Event found!" << endl;
-                cout << "Event ID: " << id << endl;
-                cout << "Event Name: " << name << endl;
-                cout << "Event Date: " << date << endl;
-                cout << "Venue:"  << venue << endl;
-                found =true ;
-                break;
-            }
-        }
-        file.close();
-
-        if (found == false) {
-            cout << "Event not found!" << endl;
-        }
-    } else {
-        cout << "File unable to open!" << endl;
-    }
-}
-
-void search_venuename(){
-    string id, name, date, venue;
-    string search_venuename;
-    string line; 
-    bool found = false;
-
-    cout << "Enter venue name to search: ";
-    getline(cin, search_venuename);
-
-    ifstream file;
-    file.open("events.txt");
-
-    if (file.is_open()) {
-        
-       
-        while (getline(file, line)) {
-            
-            stringstream ss(line);
-
-         
-            getline(ss, id, '|');
-            getline(ss, name, '|');
-            getline(ss, date, '|');
-            getline(ss, venue, '|'); 
-
-            
-            if (venue == search_venuename) {
-                cout << "Events found on this venue !" << endl;
-                cout << "Event ID: " << id << endl;
-                cout << "Event Name: " << name << endl;
-                cout << "Event Date: " << date << endl;
-                cout << "Venue:"  << venue << endl;
-                found =true ;
-                
-            }
-        }
-        file.close();
-
-        if (found == false) {
-            cout << "Event not found ! :(" << endl;
-        }
-    } else {
-        cout << "File unable to open! :(" << endl;
-    }
-}
-
-;
-
-
-int main() {
-    cout << "\n--- Event Search Menu ---" << endl;
-    cout << "1 -->   Search by Event Name" << endl;
-    cout << "2 -->  Search by Venue Name" << endl;
+int event_count;
+int prgm_exe;
     
-    int input_from_user;
-    cin>>input_from_user;
-    cin.ignore();
-    if (input_from_user==1){
-        search_name();
-
-    }
-    else if (input_from_user==2)
-    {
-        search_venuename();
+void loadEventCount(){
+    ifstream file("count.txt");
+    if(file){
+        file>> event_count;
+        file.close();
     }
     else{
-        cout<<"invalid input";
+        event_count=0;
     }
+}
+void saveEventCount(){
+    ofstream file("count.txt");
+    file<< event_count;
+    file.close();
+}
+
+int main()
+{
+    Event events[100];
+    loadEventCount();
+    // loadEvents();
+    prgm_exe=1;
+    cout<<" --------------------------------------------- WELCOME TO UNIVENT TRACKER! ----------------------------------------------"<<endl;
+    cout<<" Initial events count is: "<<event_count<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    do
+    {
+        int choice;
+        cout<<" Select one of the following choices:- "<<endl;
+        cout<<" Press 1 : Insert new Event"<<endl;
+        cout<<" Press 2 : Delete an Event"<<endl;
+        cout<<" Press 3 : Search for an Event"<<endl;;
+        cout<<" Press 4 : Sort all the Events"<<endl;;
+        cout<<" Press 5 : Display all the Events"<<endl;;
+        cout<<" YOUR CHOICE: \t";
+        cin>>choice;
+        cin.ignore();
+        switch(choice){
+            case 1:
+                event_count++; // each of this event is in Functions.cpp file linked to header file in this main.cpp top
+                insert_event();
+                break;
+            case 2:
+                event_count--;
+                delete_event();
+                break;
+            case 3:
+                search_event();
+                break;
+            case 4:
+                sort_event();
+                break;
+            case 5:
+                display_event();
+                break;
+            default:
+                cout<<" The choice entered is invalid. "<<endl;
+                cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+                cin>>prgm_exe;
+                cin.ignore();
+                cout<<" ------------------------------ "<<endl;
+                cout<<" ------------------------------ "<<endl;
+        }
     
+    }while(prgm_exe); //ask in each method at the method end about prgm_exe your choice to continue or exit. 
+    
+    cout<<" Thank you for using Univent Tracker. Have a great day! "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    system("pause");
     return 0;
 }
