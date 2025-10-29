@@ -1,16 +1,18 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <fstream>
 #include "Event.h"
 #include "Functions.h"
 #include "main.h"
+#include "multipleCodeChoice.h"
 using namespace std;
 
 int insert_event(){
 
     Event e;
     cout<<" ------------------------------------------------------- "<<endl;
-    cout<<" Welcome to inserting event "<<endl;
+    cout<<" \t\tWelcome to inserting event "<<endl;
     cout<<" ------------------------------------------------------- "<<endl;
     string temp_name, temp_date, temp_venue;
     int temp_id;
@@ -57,8 +59,55 @@ int insert_event(){
 
 int delete_event(){}
 
-int search_event(){}
+int search_event(){
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" \t\tWelcome to searching event "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" Select one of the following availaable options for search type " << endl;
+    cout<<" Press 1 : Search by Event Name " << endl;
+    cout<<" Press 2 : Search by Venue " << endl;
+    cout<<" Your Choice : \t";
+    int input_from_user;
+    cin>>input_from_user;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    if (input_from_user==1)
+    {
+        search_name();
+    }
+    else if (input_from_user==2)
+    {
+        search_venuename();
+    }
+    else{
+        cout<<"invalid input";
+    }
+    
+    cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+    cin>>prgm_exe;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    return 0;
+}
 
 int sort_event(){}
 
-int display_event(){}
+int display_event(){
+        
+    // Event e;
+    // string temp_name, temp_date, temp_venue;
+    // int temp_id;
+    
+    // ifstream file("event.txt");
+    // if (!file){
+    //     cerr<< " Error: Cannot Read the file";
+    //     return -1;
+    // }
+
+    // cout << setw(20) <<left<< "Name"
+    //      << setw(15) <<left<< "Date"
+    //      << setw(15) <<left<< "Venue"<< endl;
+
+        
+}
