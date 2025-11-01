@@ -8,9 +8,9 @@ int insert_event();//done
 
 int delete_event();
 
-int search_event();//done 2 types- 3rd left (date)
+int search_event();//done 
 
-int sort_event();
+int sort_event();//done
 
 int display_event();
 
