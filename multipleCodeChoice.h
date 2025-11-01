@@ -6,9 +6,15 @@ using namespace std;
 
 //commonly used functions
 string toLowerCase(string);
+int dateToint( string date);
 
 //Different Search Codes
 void search_name();
-void search_venuename();
+void search_venue();
+void search_date();
 
+//Different Sort Codes
+void sort_Name();
+void sort_Date();
+void sort_Venue();
 #endif
