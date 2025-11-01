@@ -63,25 +63,31 @@ int search_event(){
     cout<<" ------------------------------------------------------- "<<endl;
     cout<<" \t\tWelcome to searching event "<<endl;
     cout<<" ------------------------------------------------------- "<<endl;
-    cout<<" Select one of the following availaable options for search type " << endl;
+    cout<<" Select one of the following available options for search type " << endl;
     cout<<" Press 1 : Search by Event Name " << endl;
     cout<<" Press 2 : Search by Venue " << endl;
+    cout<<" Press 3 : Search by Date " << endl;  
     cout<<" Your Choice : \t";
     int input_from_user;
     cin>>input_from_user;
     cin.ignore();
     cout<<" ------------------------------------------------------- "<<endl;
-    if (input_from_user==1)
+    switch (input_from_user)
     {
+    case 1:
         search_name();
-    }
-    else if (input_from_user==2)
-    {
-        search_venuename();
-    }
-    else{
+        break;
+    case 2:
+        search_venue();
+        break;
+    case 3:
+        search_date();
+        break;
+    default:
         cout<<"invalid input";
+        break;
     }
+
     
     cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
     cin>>prgm_exe;
@@ -91,7 +97,43 @@ int search_event(){
     return 0;
 }
 
-int sort_event(){}
+int sort_event(){
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" \t\tWelcome to sorting event "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" Select one of the following available options for sort type " << endl;
+    cout<<" Press 1 : Sort by Event Name " << endl;
+    cout<<" Press 2 : Sort by Date " << endl;  
+    cout<<" Press 3 : Sort by Venue " << endl;
+    cout<<" Your Choice : \t";
+    int input_from_user;
+    cin>>input_from_user;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    switch (input_from_user)
+    {
+    case 1:
+        sort_Name();
+        break;
+    case 2:
+        sort_Date();
+        break;
+    case 3:
+        sort_Venue();
+        break;
+    default:
+        cout<<"invalid input";
+        break;
+    }
+
+    
+    cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+    cin>>prgm_exe;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    return 0;
+}
 
 int display_event(){
         
