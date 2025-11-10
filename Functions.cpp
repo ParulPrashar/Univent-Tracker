@@ -12,7 +12,7 @@ int insert_event(){
 
     Event e;
     cout<<" ------------------------------------------------------- "<<endl;
-    cout<<" \t\tWelcome to inserting event "<<endl;
+    cout<<" \t\tWelcome to insertion of events "<<endl;
     cout<<" ------------------------------------------------------- "<<endl;
     string temp_name, temp_date, temp_venue;
     int temp_id;
@@ -48,8 +48,8 @@ int insert_event(){
     saveEventCount();
     cout<<" Event added successfully "<<endl;
     cout<<" Final events count is: "<<event_count<<endl;
-    cout<<" ------------------------------------------------------- "<<endl;
-    cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+    
+    cout<<"\n Press 1 to continue operations OR Press 0 to exit. \t";
     cin>>prgm_exe;
     cin.ignore();
     cout<<" ------------------------------------------------------- "<<endl;
@@ -57,7 +57,94 @@ int insert_event(){
     return 0;
 }
 
-int delete_event(){}
+int delete_event()
+{
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" \t\tWelcome to deletion of events "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    // int count=event_count;
+    ifstream fin("events.txt");
+    if (!fin) {
+        cerr<<" Error: Could not open file! "<<endl;
+        return -1;
+    }
+    string name[100],date[100],venue[100], line; 
+    int id[100], count=0;
+
+    // Reading events from text file into arrays
+    while(getline(fin,line) && count<100){
+        stringstream ss(line);
+        string temp;
+
+        getline(ss,temp,'|');
+        id[count] = stoi(temp);
+        getline(ss, name[count],'|');
+        getline(ss, date[count],'|');
+        getline(ss, venue[count],'|');
+        count++;
+    }
+    fin.close();
+    // cout<<" count= \t"<<count<<endl;
+    // cout<<" event_count= \t"<<event_count<<endl;
+    if (!count) {
+        // cout<<" count= \t"<<count<<endl;
+        // cout<<" event_count= \t"<<event_count<<endl;
+        cout << " No events found in 'events.txt' file! " << endl;
+    }
+    else{
+    int choice;
+    cout<<" Do you want to display events before deleting? "<<endl;
+    cout<<" Press 0 : No "<<endl;
+    cout<<" Press 1 : Yes "<<endl;
+    cout<<" Your Choice : \t";
+    cin>>choice;
+    switch(choice){
+        case 1:
+            display();
+            break;
+        default:
+            break;
+    }
+
+    int del_id;
+    cout << "\n Enter the Event ID to delete the event : \t";
+    cin >> del_id;
+    if (del_id < 1 || del_id > count) {
+        cout << " Invalid ID enetered " << endl;
+        return 0;
+    }
+    // Shift all elements by one place before, after deleting the required element
+    for (int i = del_id-1; i < count; i++) {
+        id[i]    = i+1;
+        name[i]  = name[i + 1];
+        date[i]  = date[i + 1];
+        venue[i] = venue[i + 1];
+    }
+    count--;
+    event_count--;
+    saveEventCount();
+    // Rewrite into events.txt file with updated list
+    ofstream fout("events.txt");
+    for (int i = 0; i < count; i++) {
+        fout << id[i] << "|"
+             << name[i] << "|" 
+             << date[i] << "|" 
+             << venue[i] << "\n";
+    }
+    fout.close();
+
+    cout << " Event deleted successfully! \n"<<endl;
+    cout << " Updated List of Events \n"<<endl;
+    display();
+    cout<<" Final events count is: "<<event_count<<endl;
+    }
+    cout<<"\n Press 1 to continue operations OR Press 0 to exit. \t";
+    cin>>prgm_exe;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    return 0;
+}
 
 int search_event(){
     cout<<" ------------------------------------------------------- "<<endl;
@@ -72,6 +159,7 @@ int search_event(){
     cin>>input_from_user;
     cin.ignore();
     cout<<" ------------------------------------------------------- "<<endl;
+    string search_val;
     switch (input_from_user)
     {
     case 1:
@@ -89,7 +177,7 @@ int search_event(){
     }
 
     
-    cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+    cout<<"\n Press 1 to continue operations OR Press 0 to exit. \t";
     cin>>prgm_exe;
     cin.ignore();
     cout<<" ------------------------------------------------------- "<<endl;
@@ -127,7 +215,7 @@ int sort_event(){
     }
 
     
-    cout<<" Press 1 to continue operations OR Press 0 to exit. \t";
+    cout<<"\n Press 1 to continue operations OR Press 0 to exit. \t";
     cin>>prgm_exe;
     cin.ignore();
     cout<<" ------------------------------------------------------- "<<endl;
@@ -136,20 +224,51 @@ int sort_event(){
 }
 
 int display_event(){
-        
-    // Event e;
-    // string temp_name, temp_date, temp_venue;
-    // int temp_id;
-    
-    // ifstream file("event.txt");
-    // if (!file){
-    //     cerr<< " Error: Cannot Read the file";
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" \t\tWelcome to displaying event "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+
+    display();
+    // ifstream file("events.txt");
+    // if (!file) {
+    //     cerr<<" Error: Could not open file! "<<endl;
     //     return -1;
     // }
 
-    // cout << setw(20) <<left<< "Name"
-    //      << setw(15) <<left<< "Date"
-    //      << setw(15) <<left<< "Venue"<< endl;
+    // cout<<left;
+    // cout<<setw(6) << " ID";
+    // cout<<setw(30)<< " Name";
+    // cout<<setw(15)<< " Date";
+    // cout<<setw(20)<< " Venue"<< "\n";
+    // cout<<" ---------------------------------------------------------- "<<endl;
 
-        
+    // string line;
+    // bool found = false;
+
+    // while (getline(file, line)) {
+    //     stringstream ss(line);
+    //     string id, name, date, venue;
+
+    //     getline(ss, id, '|');
+    //     getline(ss, name, '|');
+    //     getline(ss, date, '|');
+    //     getline(ss, venue, '|');
+
+    //     cout << " ";
+    //     cout << setw(6)  << id;
+    //     cout << setw(30) << name;
+    //     cout << setw(15) << date;
+    //     cout << setw(20) << venue << endl;
+    //     found=true;
+    // }
+    // file.close();
+    // if (!found) {
+    //     cout << " Events not found in the file! "<<endl;
+    // }
+    cout<<"\n Press 1 to continue operations OR Press 0 to exit. \t";
+    cin>>prgm_exe;
+    cin.ignore();
+    cout<<" ------------------------------------------------------- "<<endl;
+    cout<<" ------------------------------------------------------- "<<endl;
+    return 0;
 }

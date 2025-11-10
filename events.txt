@@ -1,3 +1,4 @@
-1|AI Workshop|23-05-2025|Lab-2
-2|Hands-on Robotics Seminar|11-11-2025|GJCEI
-3|Spectra 2.0|04-11-2025|CET
+1|Hackathon|08-11-2025|GJCEI
+2|Debate Fest|12-12-2025|Auditorium
+3|Youth Festival|08-11-2025|Conference Hall
+4|Annual Function|20-01-2026|School Hall

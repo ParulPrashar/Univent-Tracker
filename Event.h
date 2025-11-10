@@ -2,6 +2,9 @@
 #define EVENT_H
 #include<iostream>
 #include<string>
+#include<string>
+#include<cctype>
+#include<algorithm>
 using namespace std;
 
 class Event{
@@ -12,16 +15,20 @@ class Event{
         public:
             void event_input();
             void event_display(int id, string name, string date, string venue);
-
+            
+            //setter functs.
             void set_ID(int);
             void set_Name(string);
             void set_Date(string);
             void set_Venue(string);
 
+            //getter functs.
             int get_ID();
             string get_Name();
             string get_Date();
             string get_Venue();
+
+
 };
 
 #endif

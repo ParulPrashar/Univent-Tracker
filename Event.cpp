@@ -1,6 +1,9 @@
-// this is a file where class structure is created i.e., all events are stored here in the form of array of classes
+// this is a file where basic class functions are stored and can be reused easily
 #include<iostream>
 #include<string>
+#include<string>
+#include<cctype>
+#include<algorithm>
 #include"Event.h"
 #include "main.h"
 using namespace std;
@@ -32,3 +35,5 @@ string Event::get_Date(){
 string Event::get_Venue(){
     return event_venue;
 }
+
+
