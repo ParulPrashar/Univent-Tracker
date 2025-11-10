@@ -17,4 +17,6 @@ void search_date();
 void sort_Name();
 void sort_Date();
 void sort_Venue();
+
+void display();
 #endif

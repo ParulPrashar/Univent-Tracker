@@ -32,7 +32,7 @@ void search_name() {
     string line; 
     bool found = false;
 
-    int count=0;
+    int count=0, req_id;
 
     cout << " Enter event name to search: ";
     getline(cin, search_name);
@@ -172,7 +172,6 @@ void search_date()
                 cout << " Event Date : " << date << endl;
                 cout << " Event Venue : "  << venue << endl;
                 cout << " \n";
-                break;
             }
         }
         file.close();
@@ -196,8 +195,8 @@ void sort_Name(){
     }
     // Event events[100];
     string sort_name[100], _date[100], _venue[100];
-    string line, temp_name;
-    int count =0, _id[100];
+    string line, temp_name, temp_date,temp_venue;
+    int count =0, _id[100], temp_id;
     string date, venue;
 
     while(getline(fin,line) && count<100){
@@ -225,12 +224,22 @@ void sort_Name(){
 
                 name1=toLowerCase(name1);
                 name2=toLowerCase(name2);
-                transform(name1.begin(),name1.end(),name1.begin(),::tolower);
-                transform(name2.begin(),name2.end(),name2.begin(),::tolower);
                 if(name1 >name2){
                     temp_name=sort_name[j];
                     sort_name[j]=sort_name[j+1];
                     sort_name[j+1]=temp_name;
+
+                    temp_id=_id[j];
+                    _id[j]=_id[j+1];
+                    _id[j+1]=temp_id;
+
+                    temp_date=_date[j];
+                    _date[j]=_date[j+1];
+                    _date[j+1]=temp_date;
+
+                    temp_venue=_venue[j];
+                    _venue[j]=_venue[j+1];
+                    _venue[j+1]=temp_venue;
                 }
             }
 
@@ -258,8 +267,8 @@ void sort_Date(){
         return;
     }
     string _name[100], sort_date[100], _venue[100];
-    string line, temp_date;
-    int count =0, _id[100];
+    string line, temp_name, temp_date,temp_venue;
+    int count =0, _id[100], temp_id;
     string date, venue;
 
     while(getline(fin,line) && count<100){
@@ -285,6 +294,18 @@ void sort_Date(){
                     temp_date=sort_date[j];
                     sort_date[j]=sort_date[j+1];
                     sort_date[j+1]=temp_date;
+
+                    temp_id=_id[j];
+                    _id[j]=_id[j+1];
+                    _id[j+1]=temp_id;
+
+                    temp_name=_name[j];
+                    _name[j]=_name[j+1];
+                    _name[j+1]=temp_name;
+
+                    temp_venue=_venue[j];
+                    _venue[j]=_venue[j+1];
+                    _venue[j+1]=temp_venue;
                 }
             }
         }
@@ -311,8 +332,8 @@ void sort_Venue(){
         return;
     }
     string _name[100], _date[100], sort_venue[100];
-    string line, temp_venue;
-    int count =0, _id[100];
+    string line, temp_name, temp_date,temp_venue;;
+    int count =0, _id[100], temp_id;
     string date, venue;
 
     while(getline(fin,line) && count<100){
@@ -338,6 +359,18 @@ void sort_Venue(){
                     temp_venue=sort_venue[j];
                     sort_venue[j]=sort_venue[j+1];
                     sort_venue[j+1]=temp_venue;
+
+                    temp_id=_id[j];
+                    _id[j]=_id[j+1];
+                    _id[j+1]=temp_id;
+
+                    temp_name=_name[j];
+                    _name[j]=_name[j+1];
+                    _name[j+1]=temp_name;
+
+                    temp_date=_date[j];
+                    _date[j]=_date[j+1];
+                    _date[j+1]=temp_date;
                 }
             }
         }
@@ -357,3 +390,42 @@ void sort_Venue(){
     }
 }   
 
+//display code for deletion 
+void display(){
+    ifstream file("events.txt");
+    if (!file) {
+        cerr<<" Error: Could not open file! "<<endl;
+        return;
+    }
+
+    cout<<left;
+    cout<<setw(6) << " ID";
+    cout<<setw(30)<< " Name";
+    cout<<setw(15)<< " Date";
+    cout<<setw(20)<< " Venue"<< "\n";
+    cout<<" ---------------------------------------------------------- "<<endl;
+
+    string line;
+    bool found = false;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string id, name, date, venue;
+
+        getline(ss, id, '|');
+        getline(ss, name, '|');
+        getline(ss, date, '|');
+        getline(ss, venue, '|');
+
+        cout << " ";
+        cout << setw(6)  << id;
+        cout << setw(30) << name;
+        cout << setw(15) << date;
+        cout << setw(20) << venue << endl;
+        found=true;
+    }
+    file.close();
+    if (!found) {
+        cout << " Events not found in the file! "<<endl;
+    }
+}

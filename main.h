@@ -4,6 +4,6 @@
 extern int event_count;
 extern int prgm_exe;
 void saveEventCount();
-void LoadEventCount();
+void loadEventCount();
 
 #endif
